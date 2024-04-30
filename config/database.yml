@@ -58,7 +58,7 @@ test:
 #
 production:
   <<: *default
-   adapter: postgresql
+  adapter: postgresql
   database: oriapp_production
   username: oriapp
   password: <%= ENV["ORIAPP_DATABASE_PASSWORD"] %>
