@@ -1,24 +1,52 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users Table
 
-Things you may want to cover:
+|Column            |Type  |Options                  |
+|------------------|------|-------------------------|
+|username----------|string|null: false--------------|
+|profile-----------|string|null: false--------------|
+|email-------------|string|null: false, unique: true|
+|encrypted_password|string|null: false--------------|
 
-* Ruby version
+### Association
+has_many :recipes
+has_many :comments
 
-* System dependencies
+- email, password,profile_imageはGemを使用
 
-* Configuration
+## recipes Table
+|Column      |Type      |Options                       |
+|------------|----------|------------------------------|
+|user--------|references|null: false, foreign_key: true|
+|title-------|string----|null: false-------------------|
+|make--------|text------|null: false-------------------|
+|recipe_image|string----|null: false-------------------|
 
-* Database creation
+### Association
+belongs_to :user
+has_many :comments
 
-* Database initialization
+- recipe_imageはGemを使用
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## comments Table
+|Column       |Type      |Options                       |
+|-------------|----------|------------------------------|
+|user---------|references|null: false, foreign_key: true|
+|recipe-------|references|null: false, foreign_key: true|
+|comments_text|text------|null: false-------------------|
 
-* Deployment instructions
+### Association
+belongs_to :user
+belongs_to :recipe
 
-* ...
+## favorites Table
+|Column       |Type      |Options                       |
+|-------------|----------|------------------------------|
+|user---------|references|null: false, foreign_key: true|
+|recipe-------|references|null: false, foreign_key: true|
+
+### Association
+belongs_to :user
+belongs_to :recipe
