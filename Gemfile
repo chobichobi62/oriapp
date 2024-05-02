@@ -78,3 +78,5 @@ end
 gem 'bootstrap', '~> 5.2.3'
 gem 'jquery-rails'
 gem "sassc", "~> 2.4"
+gem 'pry-rails'
+gem 'devise'
