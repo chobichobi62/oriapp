@@ -1,0 +1,20 @@
+<form class="my-form">
+    <h2>Log in</h2>
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Eメール</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">パスワード</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+<div class="mb-3">
+    <label for="exampleInputPasswordConfirm1" class="form-label">パスワード (確認)</label>
+    <input type="password" class="form-control" id="exampleInputPasswordConfirm1">
+  </div>
+
+  <button type="submit" class="btn btn-primary">ログイン</button>
+</form>
+<% end %>

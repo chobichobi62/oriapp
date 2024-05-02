@@ -1,1 +1,26 @@
 @import "bootstrap";
+
+// 新規登録・ログイン
+.my-form {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  border: 5px solid #5A9;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f5f5dc;
+  font-family: Hiragino Maru Gothic Pro W4
+}
+
+.custom-button {
+  background-color: #5A9;  /* ボタンの色 */
+  color: white;  /* 文字の色 */
+  border: none; /* 枠線非表示 */
+}
+
+.required {
+  color: red;
+  font-size: 1.2em;
+  border: 1px solid red;
+}

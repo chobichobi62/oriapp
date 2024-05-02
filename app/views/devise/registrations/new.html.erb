@@ -1,0 +1,28 @@
+<div class="my-form">
+      <h2>New account </h2>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="mb-3">
+    <%= f.label :nickname, "ニックネーム(10字以内)" %>
+    <%= f.text_field :nickname, class: 'form-control', maxlength: 10 %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :email, "Eメール" %>
+    <%= f.text_field :email, class: 'form-control' %>
+    <div id="emailHelp" class="form-text">同じメールアドレスの登録はできません</div>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+<div class="mb-3">
+    <%= f.label :password_confirmation, "パスワード(確認)" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :profile, "プロフィール" %>
+    <%= f.text_field :profile, class: 'form-control' %>
+</div>
+
+<button type="submit" class="btn custom-button">登録</button>
+<% end %>
