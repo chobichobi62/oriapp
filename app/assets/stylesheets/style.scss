@@ -25,6 +25,7 @@
   font-size: 1.2em;
   border: 1px solid red;
 }
+
 :root {
   --primary: #0d6efd;
   --dark: #21252f;
@@ -245,4 +246,20 @@ form .form-control {
 .small-height {
   height: 900px;
   object-fit: cover;
+
+}
+// 投稿するボタン
+.purchase-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  height: 90px; 
+  z-index: 50;
+  align-items: center;
+  text-align: center;
+  font-family: Hiragino Maru Gothic Pro W4; 
+  background-color: #32cd32;
+  border-radius: 10px;
+  color: #fff;
 }
