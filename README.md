@@ -20,14 +20,13 @@ has_many :comments
 |------------|----------|------------------------------|
 |user--------|references|null: false, foreign_key: true|
 |title-------|string----|null: false-------------------|
+|material----|string----|null: false-------------------|
 |make--------|text------|null: false-------------------|
-|recipe_image|string----|null: false-------------------|
+|recipe_image_id|string-|null: true-----------------|
 
 ### Association
 belongs_to :user
 has_many :comments
-
-- recipe_imageはGemを使用
 
 
 ## comments Table
