@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :new, :create]
   resources :users
   root 'homes#index'
-  root to: 'recipes#index'
 
 end
