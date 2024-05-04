@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:edit, :show]
+  
   def index
     @recipes = Recipe.all
   end
@@ -23,7 +25,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
@@ -32,9 +33,15 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+  end
 
   private
   def recipe_params
     params.require(:recipe).permit(:nickname, :image, :title, :material, :make)
+  end
+
+  def set_tweet
+    @recipe = Recipe.find(params[:id])
   end
 end

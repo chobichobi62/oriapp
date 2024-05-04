@@ -1,0 +1,18 @@
+<div class="contents row">
+  <div class="content_post" style="background-image: url(<%= @recipe.recipe_image_id %>);">
+    <div class="more">
+      <span><%= image_tag '' %></span>
+      <ul class="more_list">
+        <li>
+          <%= link_to '編集', edit_recipe_path(@recipe.id) %>
+        </li>
+        <li>
+          <%= link_to '削除', recipe_path(@recipe.id), data: { turbo_method: :delete } %>
+        </li>
+      </ul>
+    </div>
+     <p><%= @recipe.title %></p>
+    <span class="name"><%= @recipe.material %>
+    </span>
+  </div>
+</div>
