@@ -31,6 +31,10 @@
                 <div class="media-content">
                   <div class="title"><%=link_to recipe.user.nickname, user_path(recipe.user) %></div>
                 </div>
+                <%# 編集ボタン %>
+          <li>
+            <%= link_to '編集', edit_recipe_path(recipe.id) %>
+          </li>
                 <div class="media-right">
                   <%# 削除機能 %>
                   <%= button_to 'Delete', recipe_path(recipe), method: :delete %>
