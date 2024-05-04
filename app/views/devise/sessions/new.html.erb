@@ -1,20 +1,46 @@
-<form class="my-form">
-    <h2>Log in</h2>
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="mb-3">
-    <%= f.label :email, "Eメール" %>
-    <%= f.text_field :email, class: 'form-control' %>
-    <div id="emailHelp" class="form-text">同じメールアドレスの登録はできません</div>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        ログイン画面
+      </h1>
+    </div>
   </div>
-  <div class="mb-3">
-    <%= f.label :password, "パスワード" %>
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
-<div class="mb-3">
-    <%= f.label :password_confirmation, "パスワード(確認)" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
+</section>
 
-<button type="submit" class="btn custom-button">登録</button>
-<% end %>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+<div class= my-form>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :Eメール, class: "label" %>
+            <p class="control has-icons-left">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="field">
+            <%= f.label :パスワード, class: "label" %>
+            <p class="control has-icons-left">
+              <%= f.password_field :password, autocomplete: "current-password", :placeholder => "password", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "ログイン", class: "button is-success" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</section>

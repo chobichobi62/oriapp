@@ -55,7 +55,6 @@
           <% if user_signed_in? %>
         <div class="user_nav grid-6">
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-  <%= link_to "投稿する", new_recipe_path, class: "btn btn-primary" %>
          </div>
          <% else %>
            <div class="grid-6">
