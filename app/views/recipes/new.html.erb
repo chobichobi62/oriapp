@@ -41,7 +41,7 @@
 
           <div class="field">
             <%= f.label :recipe_image, "写真", class: "label" %>
-            <%= f.attachment_field :recipe_image, class: "input" %>
+            <%= f.file_field :recipe_image, class: "input" %>
           </div>
 
           <%= f.submit '投稿', class: "button is-success" %>
