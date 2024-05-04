@@ -63,8 +63,10 @@
       <p><%= recipe.title %></p>
 
       <% if recipe.recipe_image.attached? %>
-        <%= image_tag recipe.recipe_image, style: 'max-height: 150px; max-width: 150px;' %>
-      <% end %>
+<%= link_to recipe_path(recipe) do %>
+    <%= image_tag recipe.recipe_image, style: 'max-height: 150px; max-width: 150px;' %>
+  <% end %>
+<% end %>
     </div>
   <% end %>
 </div>

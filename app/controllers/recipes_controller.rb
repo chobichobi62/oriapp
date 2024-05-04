@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:nickname, :recipe_image, :title, :material, :make)
   end
 
-  def set_tweet
+  def set_recipe
     @recipe = Recipe.find(params[:id])
   end
 
