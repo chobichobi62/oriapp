@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       redirect_to root_path
     else
@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:nickname, :image, :title, :material, :make)
+    params.require(:recipe).permit(:nickname, :recipe_image, :title, :material, :make)
   end
 
   def set_tweet
