@@ -1,6 +1,5 @@
 @import "bootstrap";
 
-
 // 新規登録・ログイン
 .my-form {
   width: 50%;
@@ -261,4 +260,9 @@ form .form-control {
   font-family: Hiragino Maru Gothic Pro W4; 
   background-color: #32cd32;
   border-radius: 10px;
+}
+// 画像スライド
+.card-img-top {
+  object-fit: cover;
+  height: 200px; /* 適当なサイズに設定してください */
 }
