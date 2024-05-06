@@ -8,12 +8,12 @@
 |profile-----------|string|null: true---------------|
 |email-------------|string|null: false, unique: true|
 |encrypted_password|string|null: false--------------|
-
+|profile_image     |string|null: true---------------|
 ### Association
 has_many :recipes
 has_many :comments
 
-- email, password,profile_imageはGemを使用
+- email, passwordGemを使用
 
 ## recipes Table
 |Column      |Type      |Options                       |

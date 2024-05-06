@@ -31,9 +31,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <p>マイページ</p>
-            <%= image_tag("human.png", alt: "My Page Icon", class: "footer-icon") %>
+<% if current_user %>
+  <li class="nav-item">
+    <p>マイページ</p>
+    <%= link_to user_path(current_user) do %>
+      <%= image_tag("human.png", alt: "My Page Icon", class: "footer-icon") %>
+    <% end %>
+  </li>
+<% end %>
             </li>
           </ul>
           <%# ログイン状態によって画面の表示を切り替える %>
