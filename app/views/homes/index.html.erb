@@ -55,8 +55,68 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<br><br>
+      <h2>~新着レシピ~</h2>
+      <br>
+<div style="display: flex; flex-direction: row-reverse;">
+  <% @recipes.each do |recipe| %>
+    <div style="flex: 2; margin-right: 5px;">
+      <p><%= recipe.title %></p>
 
-<%= link_to new_recipe_path, class: 'purchase-btn' do %>
+      <% if recipe.recipe_image.attached? %>
+<%= link_to recipe_path(recipe) do %>
+    <%= image_tag recipe.recipe_image, style: 'max-height: 150px; max-width: 150px;' %>
+  <% end %>
+<% end %>
+    </div>
+  <% end %>
+</div>
+<br><br><br>
+
+<h2>~ダイエット豆知識~</h2>
+<br>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <%= image_tag("water.jpg", class: "card-img-top", alt: "...") %>
+      <div class="card-body">
+        <h5 class="card-title">1日の水分摂取量</h5>
+        <p class="card-text">
+          お水の摂取源は食物からが約20〜30％、残りの70〜80％を飲み物から摂っていると言われています。<br>計算式で水分摂取量を割り出すことができるので、自分の水分摂取量を把握しましょう。<br>【計算式】体重(kg)×年齢別必要量(ml)＝必要水分量<br>【年齢別必要量】
+22～55歳：35ml   55～65歳：30ml   65歳以上：25ml</p>
+      </div>
+      <div class="card-footer">
+        ※あくまで目安です。食事や運動量で変化しますので注意。<br>※お茶やコーヒーではなく水を飲みましょう。
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <%= image_tag("body.jpg", class: "card-img-top", alt: "...") %>
+      <div class="card-body">
+        <h5 class="card-title">リバウンドしないために</h5>
+        <p class="card-text">「1ヶ月で減らすのは全体重の5％まで」が目安と言われています。<br>急激なダイエットによって1ヶ月で現体重の5％以上が減ると、ホメオスタシスによって「飢餓状態かもしれないから、体重がこれ以上減らないようにしよう」と代謝を抑制する作用が働きます。<br>計算式で一ヶ月に痩せてもリバウンドしない、体重を把握しましょう。<br>【計算方法】<br>現体重×0.05＝1ヶ月の減量体重の目安<br></p>
+      </div>
+      <div class="card-footer">
+        ※ホメオスタシス＝どんな環境においても身体の生理機能が一定に保たれる働きのこと。
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <%= image_tag("walk.jpg", class: "card-img-top", alt: "...") %>
+      <div class="card-body">
+        <h5 class="card-title">運動も忘れずに</h5>
+        <p class="card-text">ウォーキングやストレッチなど、毎日続けられる運動がおすすめです。<br>筋肉の材料となるタンパク質、代謝を維持するビタミンやミネラルをしっかり補給することも重要です。<br>【有酸素運動をする場合】<br>ダイエットや生活習慣病予防を目的として有酸素運動を毎日行う場合は、1日あたり20〜30分の時間を目安にしましょう。痩せるためにはエネルギー消費量を増やす必要がありますから、食事制限だけでなく運動も取り入れましょう。<br></p>
+              </div>
+      <div class="card-footer">
+        ※有酸素運動を始めると、最初に糖が消費され、運動を開始してからおよそ20分後に体脂肪（皮下脂肪・内臓脂肪）の消費がスタートします。
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to user_signed_in? ? new_recipe_path : new_user_registration_path, class: 'purchase-btn' do %>
   <span class='purchase-btn-text'>投稿する</span>
   <%= image_tag 'food.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
@@ -67,3 +127,4 @@
       crossorigin="anonymous"
     ></script>
   </body>
+  <br><br>

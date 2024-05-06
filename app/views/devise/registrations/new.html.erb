@@ -1,6 +1,6 @@
 <div class="my-form">
       <h2>New account </h2>
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true, multipart: true do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
   <div class="mb-3">
     <%= f.label :nickname, "ニックネーム(10字以内)" %>
@@ -22,6 +22,10 @@
   <div class="mb-3">
     <%= f.label :profile, "プロフィール" %>
     <%= f.text_field :profile, class: 'form-control' %>
+</div>
+<div class="mb-3">
+  <%= f.label :profile_image, class: "label" %>
+  <%= f.file_field :profile_image, class: "input" %>
 </div>
 
 <button type="submit" class="btn custom-button">登録</button>

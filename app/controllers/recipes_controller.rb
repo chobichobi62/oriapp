@@ -1,4 +1,7 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:edit, :show]
+  before_action :move_to_index, except: [:index, :show]
+  
   def index
     @recipes = Recipe.all
   end
@@ -8,7 +11,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       redirect_to root_path
     else
@@ -23,7 +26,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
@@ -32,9 +34,21 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+  end
 
   private
   def recipe_params
-    params.require(:recipe).permit(:nickname, :image, :title, :material, :make)
+    params.require(:recipe).permit(:nickname, :recipe_image, :title, :material, :make).merge(user_id: current_user.id)
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

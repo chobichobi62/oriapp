@@ -13,9 +13,11 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark py-3 sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="#">
-          <h2 class="pt-2 text-white">D recipe</h2>
+        <%# タイトルクリックでトップページへ遷移 %>
+        <a class="navbar-brand" href="<%= root_path %>">
+  <h2 class="pt-2 text-white custom-font">D recipe</h2>
         </a>
+        
         <button
           class="navbar-toggler"
           type="button"
@@ -29,31 +31,27 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#services">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#features">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#team">Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#blog">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+<% if current_user %>
+  <li class="nav-item">
+    <p>マイページ</p>
+    <%= link_to user_path(current_user) do %>
+      <%= image_tag("human.png", alt: "My Page Icon", class: "footer-icon") %>
+    <% end %>
+  </li>
+<% end %>
             </li>
           </ul>
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary ms-3" %>
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary ms-3" %>
-        </div>
+          <%# ログイン状態によって画面の表示を切り替える %>
+          <% if user_signed_in? %>
+        <div class="user_nav grid-6">
+         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-light rounded-btn" %>
+         </div>
+         <% else %>
+           <div class="grid-6">
+         <%= link_to "ログイン", new_user_session_path, class: "btn btn-light rounded-btn" %>
+         <%= link_to "新規登録", new_user_registration_path, class: "btn btn-light rounded-btn" %>
+           </div>
+         <% end %>
       </div>
     </nav>
     <%= yield %>
