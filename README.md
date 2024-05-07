@@ -34,7 +34,7 @@ has_many :comments
 |-------------|----------|------------------------------|
 |user---------|references|null: false, foreign_key: true|
 |recipe-------|references|null: false, foreign_key: true|
-|comments_text|text------|null: false-------------------|
+|comment_text|text------|null: false-------------------|
 
 ### Association
 belongs_to :user
