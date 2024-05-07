@@ -15,7 +15,7 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-              <%= image_tag @recipe.recipe_image if @recipe.recipe_image.attached? %>
+              <%= image_tag (@recipe.recipe_image.attached? ? @recipe.recipe_image : "no-image2.png") %>
             </figure>
           </div>
           <div class="card-content">
@@ -27,14 +27,18 @@
             <div class="content">
               <table class="table is-narrow">
                 <tr>
-                  <th>レシピ</th>
+                  <th>材料</th>
                 </tr>
                 <tr>
-                  <td><%= simple_format @recipe.make %></td>
+                  <td><%= simple_format @recipe.material %></td>
                 </tr>
+                <th>作り方</th>
+                <tr>
+                <td><%= simple_format @recipe.make %></td>
               </table>
           <% if user_signed_in? && @recipe.user.id == current_user.id %>
            <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
+           <%= link_to "削除する", recipe_path(@recipe), { confirm: "Are you sure?", class: "button is-danger", data: { turbo_method: :delete } }  %>
           <% end %>
             </div>
           </div>
@@ -46,11 +50,6 @@
           <p class="panel-heading">
             By <%= @recipe.user.nickname %>
           </p>
-          <div class="panel-block">
-            <p class="control">
-              <%= @recipe.user.profile %>
-            </p>
-          </div>
           <%= link_to user_path(@recipe.user), class: "panel-block" do %>
             <span class="panel-icon">
               <i class="fas fa-user" aria-hidden="true"></i>

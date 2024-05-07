@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:edit, :show]
+  before_action :set_recipe, only: [:edit, :show, :destroy]
   before_action :move_to_index, except: [:index, :show]
   
   def index
