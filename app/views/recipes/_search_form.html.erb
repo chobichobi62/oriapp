@@ -1,0 +1,10 @@
+<div style="display: flex; justify-content: flex-end;">
+  <%= form_with(url: search_recipes_path, method: :get, local: true, role: "search") do %>
+    <div style="display: flex;">
+      <%= text_field_tag :keyword, params[:keyword], class: "form-control me-2", type: "search", placeholder: "検索", "aria-label": "Search", style: "margin-right: 10px;" %>
+      <%= button_tag type:"submit", class: "btn btn-outline-success" do %>
+        <i class="bi bi-search"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

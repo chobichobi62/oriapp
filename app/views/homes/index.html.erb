@@ -1,37 +1,16 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-<%= stylesheet_link_tag 'style' %>
-    <title>BootStrapウェブサイト</title>
-  </head>
-
-
 <body>
 
 <%# 検索バー %>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid d-flex justify-content-end">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">
-      <i class="bi bi-search"></i>
-</button>
-    </form>
-  </div>
-</nav>
+<div style="display: flex; justify-content: flex-end;">
+  <%= form_with(url: search_recipes_path, method: :get, local: true, role: "search") do %>
+    <div style="display: flex;">
+      <%= text_field_tag :keyword, params[:keyword], class: "form-control me-2", type: "search", placeholder: "検索", "aria-label": "Search", style: "margin-right: 10px;" %>
+      <%= button_tag type:"submit", class: "btn btn-outline-success" do %>
+        <i class="bi bi-search"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <%# 画像スライド %>
 <div id="carouselExampleFade" class="carousel slide carousel-fade">
