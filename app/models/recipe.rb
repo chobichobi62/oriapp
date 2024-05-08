@@ -3,6 +3,13 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :recipe_image
 
+  def self.search(search)
+    if search != ""
+      Recipe.where('title LIKE(?)', "%#{search}%")
+    else
+      Recipe.all
+    end
+  end
   with_options presence: true do
     validates :title
     validates :material

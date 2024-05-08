@@ -1,0 +1,25 @@
+<%= render 'recipes/search_form' %>
+<div class="column is-4">
+  <div class="card" style="display:flex; flex-direction:row;">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <div class="title" style="font-size: 30px;">
+          <%= link_to recipe.title, recipe_path(recipe) %>
+        </div>
+        <%= link_to recipe_path(recipe) do %>
+          <%= image_tag(recipe.recipe_image.present? ? recipe.recipe_image : 'no-image2.png', style: 'width:300px; margin: 0 auto; display: block;') %>
+        <% end %>
+      </figure>
+    </div>
+    <div class="media" style="display: flex; flex-direction: row;">
+      <div class="ingredients" style="font-size: 20px;">
+      <h2>材料</h2>
+        <%= recipe.material %>
+      </div>
+      <div class="method" style="font-size: 20px;">
+      <h2>作り方</h2>
+        <%= recipe.make %>
+      </div>
+    </div>
+  </div>
+</div>
