@@ -58,9 +58,9 @@
 <br><br>
 <h2>~新着レシピ~</h2>
 <br>
-<div style="display: flex; flex-direction: row-reverse; overflow-x: auto;">
+<div style="display: flex; direction: rtl; overflow-x: auto;">
 <% @recipes.each do |recipe| %>
-  <div style="min-width: 300px;; margin-right: 5px;">
+  <div class="recipe-scroller" style="min-width: 300px;; margin-right: 5px;">
     <p><%= recipe.title %></p>
       <%= link_to recipe_path(recipe) do %>
         <%= image_tag (recipe.recipe_image.attached? ? recipe.recipe_image : "no-image2.png"), style: 'max-height: 100%; max-width: 100%;' %>
