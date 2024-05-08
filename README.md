@@ -20,7 +20,7 @@ has_many :comments
 |------------|----------|------------------------------|
 |user--------|references|null: false, foreign_key: true|
 |title-------|string----|null: false-------------------|
-|material----|string----|null: false-------------------|
+|material----|text------|null: false-------------------|
 |make--------|text------|null: false-------------------|
 |recipe_image_id|string-|null: true-----------------|
 
@@ -34,7 +34,7 @@ has_many :comments
 |-------------|----------|------------------------------|
 |user---------|references|null: false, foreign_key: true|
 |recipe-------|references|null: false, foreign_key: true|
-|comments_text|text------|null: false-------------------|
+|comment_text|text------|null: false-------------------|
 
 ### Association
 belongs_to :user

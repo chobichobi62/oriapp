@@ -56,20 +56,18 @@
   </button>
 </div>
 <br><br>
-      <h2>~新着レシピ~</h2>
-      <br>
-<div style="display: flex; flex-direction: row-reverse;">
-  <% @recipes.each do |recipe| %>
-    <div style="flex: 2; margin-right: 5px;">
-      <p><%= recipe.title %></p>
-
-      <% if recipe.recipe_image.attached? %>
-<%= link_to recipe_path(recipe) do %>
-    <%= image_tag recipe.recipe_image, style: 'max-height: 150px; max-width: 150px;' %>
-  <% end %>
+<h2>~新着レシピ~</h2>
+<br>
+<div style="display: flex; direction: rtl; overflow-x: auto;">
+<% @recipes.each do |recipe| %>
+  <div class="recipe-scroller" style="min-width: 300px;; margin-right: 5px;">
+    <p><%= recipe.title %></p>
+      <%= link_to recipe_path(recipe) do %>
+        <%= image_tag (recipe.recipe_image.attached? ? recipe.recipe_image : "no-image2.png"), style: 'height: 200px; width: 200px; object-fit: cover;' %>
+      <% end %>
+  </div>
 <% end %>
-    </div>
-  <% end %>
+</div>
 </div>
 <br><br><br>
 

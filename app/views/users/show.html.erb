@@ -57,7 +57,7 @@
             <div class="card-image">
               <figure class="image is-4by3">
                 <%= link_to recipe_path(recipe) do %>
-                  <%= image_tag url_for(recipe.recipe_image), fallback: "no-image.jpg" if recipe.recipe_image.attached? %>
+                  <%= image_tag recipe.recipe_image.attached? ? url_for(recipe.recipe_image) : 'no-image2.png' %>
                 <% end %>
               </figure>
             </div>
@@ -77,13 +77,13 @@
                       </span>
                       このレシピを編集する
                     <% end %>
-                    <%= link_to recipe_path(recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
-                      <span class="panel-icon">
-                        <i class="fas fa-trash"></i>
-                      </span>
-                      このレシピを削除する
-                    <% end %>
                   <% end %>
+                    <%= link_to recipe_path(recipe), { confirm: "Are you sure?", class: "panel-block", data: { turbo_method: :delete } } do %>
+                    <span class="panel-icon">
+                    <i class="fas fa-trash"></i>
+                    </span>
+                    このレシピを削除する
+                    <% end %>
                 </div>
               </div>
               <div class="content">

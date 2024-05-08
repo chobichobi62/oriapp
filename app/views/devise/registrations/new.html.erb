@@ -1,5 +1,15 @@
-<div class="my-form">
-      <h2>New account </h2>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        新規登録画面
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div class= my-form>
+<div class="form-container">
       <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true, multipart: true do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
   <div class="mb-3">
@@ -30,3 +40,5 @@
 
 <button type="submit" class="btn custom-button">登録</button>
 <% end %>
+</div>
+</div>
