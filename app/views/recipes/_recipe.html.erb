@@ -1,4 +1,3 @@
-<%= render 'recipes/search_form' %>
 <div class="column is-4">
   <div class="card" style="display:flex; flex-direction:row;">
     <div class="card-image">
@@ -20,6 +19,16 @@
       <h2>作り方</h2>
         <%= recipe.make %>
       </div>
+
+<div id="favorite-btn<%= recipe.id %>" style="position: absolute; bottom: 0; right: 0;">
+  <% if user_signed_in? && recipe.favorited_by?(current_user)%>
+    <%= link_to '<i class="bi bi-heart-fill" style="font-size: 3em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(recipe.id),  data: { turbo_method: :delete }, class: "recipe_favorites" %>
+  <% else %>
+    <%= link_to '<i class="bi bi-heart" style="font-size: 3em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(recipe.id), data: { turbo_method: :post }, class: "recipe_favorites" %>
+  <% end %>
+</div>
+</div>
+  </div>
     </div>
   </div>
 </div>

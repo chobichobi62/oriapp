@@ -6,6 +6,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.text :material,          null: false
       t.text :make,                null: false
       t.string :recipe_image_id,   null: true
+      t.integer :favorites_count, default: 0
       t.timestamps
     end
   end
