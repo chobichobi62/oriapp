@@ -42,23 +42,21 @@
               </tr>
             </table>
           </div>
+          <ul><br>
+      <li class="side-bar__group__list">
+        <%= link_to likes_users_path do %>
+      お気に入りレシピ <i class="bi bi-heart" style="font-size: 1em; color: #db7093;"></i>
+        <% end %>
+      </li>
+    </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="side-bar">
-  <section class="side-bar__group">
-    <ul>
-      <li class="side-bar__group__list">
-        <%= link_to "お気に入りレシピ", likes_users_path %>
-      </li>
-    </ul>
-  </section>
-</div>
-
 <section class="section">
+                  <h2>投稿レシピ一覧</h2><br>
   <div class="container">
     <div class="columns is-multiline">
       <% @user.recipes.each do |recipe| %>
