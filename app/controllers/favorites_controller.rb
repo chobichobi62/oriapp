@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_recipe
+  before_action :set_variables
 
   def create
     favorite = current_user.favorites.build(recipe_id: params[:recipe_id])
@@ -19,5 +20,21 @@ class FavoritesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:recipe_id])
+  end
+
+  def favorite
+    favorite = current_user.favorites.new(recipe_id: @recipe.id)
+    favorite.save
+  end
+
+  def favorite
+    favorite = current_user.favorites.find_by(recipe_id: @recipe.id)
+    favorite.destroy
+  end
+
+  private
+  def set_variables
+    @recipe = Recipe.find(params[:recipe_id])
+    @id_name = "#like-link-#{@recipe.id}"
   end
 end

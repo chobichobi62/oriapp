@@ -9,9 +9,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
     end
+  end
 
   def user_params
     params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :profile, :profile_image)
   end
-end
+
+  def likes
+    # likesアクションで行いたい処理をここに記述します
+  end
 end

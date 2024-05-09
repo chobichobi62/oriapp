@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_09_021319) do
     t.text "material", null: false
     t.text "make", null: false
     t.string "recipe_image_id"
+    t.integer "favorites_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"

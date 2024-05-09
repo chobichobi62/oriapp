@@ -2,7 +2,8 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_one_attached :recipe_image
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
+  has_many :favotitg_users, through: :favorites, source: :user
 
   def self.search(search)
     if search != ""
