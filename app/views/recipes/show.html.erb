@@ -22,6 +22,15 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4"><%= @recipe.title %></p>
+<%# いいね機能 %>
+                 <div id="favorite-btn<%= @recipe.id %>" style="position: relative; bottom: 0; right: 0;">
+                    <% if user_signed_in? && @recipe.favorited_by?(current_user)%>
+                     <%= link_to 'お気に入り登録 <i class="bi bi-heart-fill" style="font-size: 2em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(@recipe.id),  data: { turbo_method: :delete }, class: "recipe_favorites" %>
+                    <% else %>
+                     <%= link_to 'お気に入り登録 <i class="bi bi-heart" style="font-size: 2em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(@recipe.id), data: { turbo_method: :post }, class: "recipe_favorites" %>
+                    <% end %>
+                 </div>
+
               </div>
             </div>
             <div class="content">
