@@ -20,6 +20,13 @@
       <h2>作り方</h2>
         <%= recipe.make %>
       </div>
+      <div id="favorite-btn<%= recipe.id %>">
+    <% if user_signed_in? && recipe.favorited_by?(current_user)%>
+      <%=link_to "いいね済", recipe_favorites_path(recipe.id),  data: { turbo_method: :delete }, class: "recipe_favorites" %>
+    <% else %>
+      <%=link_to "いいねする", recipe_favorites_path(recipe.id), data: { turbo_method: :post }, class: "ecipe_favorites" %>
+    <% end %>
+  </div>
     </div>
   </div>
 </div>
