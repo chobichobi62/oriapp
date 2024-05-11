@@ -318,10 +318,10 @@ form .form-control {
 
 // 各ボタン
 .custom-button {
-  background-color: #5A9;  /* ボタンの色 */
-  color: white;  /* 文字の色 */
-  border: none; /* 枠線非表示 */
-    margin-bottom: 50px; /* 希望する余白の長さに調整してください。 */
+  background-color: #5A9;
+  color: white;
+  border: none;
+    margin-bottom: 50px;
     border-radius: 10px;
     width: 150px;
     height: 50px;
@@ -329,10 +329,11 @@ form .form-control {
   }
 
   .textarea-large {
-    height: 300px; /* Change this value as needed */
+    height: 300px;
  }
  
  .recipes-container {
   display: flex;
   flex-direction: row-reverse;
+  overflow-x: scroll;
 }
