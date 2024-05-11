@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
   def create
     add_favorite
     respond_to do |format|
-      format.turbo_stream { redirect_to @recipe }
       format.js
     end
   end
@@ -13,7 +12,6 @@ class FavoritesController < ApplicationController
   def destroy
     remove_favorite
   respond_to do |format|
-    format.turbo_stream { redirect_to @recipe }
     format.js
     end
   end
