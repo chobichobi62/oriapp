@@ -1,9 +1,9 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:edit, :show, :destroy]
+  before_action :set_recipe, only: [:edit, :show, :destroy, :update]
   before_action :move_to_index, except: [:index, :show, :search]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order(created_at: :desc)
   end
 
   def new
@@ -20,7 +20,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    recipe = Recipe.find(params[:id])
     recipe.destroy
     redirect_to root_path
   end
@@ -29,9 +28,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-    recipe = Recipe.find(params[:id])
-    recipe.update(recipe_params)
-    redirect_to root_path
+    if @recipe.update(recipe_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def show
