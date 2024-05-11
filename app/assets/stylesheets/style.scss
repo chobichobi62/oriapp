@@ -332,3 +332,7 @@ form .form-control {
     height: 300px; /* Change this value as needed */
  }
  
+ .recipes-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
