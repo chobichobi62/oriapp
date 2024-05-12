@@ -3,7 +3,8 @@ class FavoritesController < ApplicationController
   before_action :set_variables
 
   def create
-    add_favorite
+    favorite = current_user.favorites.build(recipe_id: params[:recipe_id])
+    favorite.save
     respond_to do |format|
       format.js
     end

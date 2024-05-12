@@ -16,6 +16,5 @@ class UsersController < ApplicationController
   end
 
   def likes
-    # likesアクションで行いたい処理をここに記述します
   end
 end
