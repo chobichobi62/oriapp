@@ -1,0 +1,5 @@
+<turbo-stream action="replace" target="favorite-btn-<%= @recipe.id %>">
+  <template>
+    <%= render partial: 'favorites/favorite_button', locals: { recipe: @recipe }, formats: [:html] %>
+  </template>
+</turbo-stream>
