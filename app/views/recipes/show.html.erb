@@ -22,16 +22,14 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4"><%= @recipe.title %></p>
-<%# いいね機能 %>
-                 <div id="favorite-btn<%= @recipe.id %>" style="position: relative; bottom: 0; right: 0;">
-                    <% if user_signed_in? && @recipe.favorited_by?(current_user)%>
-                     <%= link_to 'お気に入り登録 <i class="bi bi-heart-fill" style="font-size: 2em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(@recipe.id),  data: { turbo_method: :delete }, class: "recipe_favorites" %>
-                    <% else %>
-                     <%= link_to 'お気に入り登録 <i class="bi bi-heart" style="font-size: 2em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(@recipe.id), data: { turbo_method: :post }, class: "recipe_favorites" %>
-                    <% end %>
-                 </div>
-
-              </div>
+                  <div id="favorite-btn<%= @recipe.id %>">
+                  <% if user_signed_in? %>
+                  <!-- お気に入りボタン -->
+    <button id="favoriteButton" class="<%= @recipe.favorited_by?(current_user) ? 'active' : '' %>">
+    <!-- ハートアイコン -->
+    <i id="heartIcon" class="bi bi-heart <%= @recipe.favorited_by?(current_user) ? 'active' : '' %>"></i>
+  <% end %>
+                   </div>
             </div>
             <div class="content">
               <table class="table is-narrow">
@@ -43,17 +41,17 @@
                 </tr>
                 <th>作り方</th>
                 <tr>
-                <td><%= simple_format @recipe.make %></td>
+                  <td><%= simple_format @recipe.make %></td>
+                </tr>
               </table>
-          <% if user_signed_in? && @recipe.user.id == current_user.id %>
-           <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
-           <%= link_to "削除する", recipe_path(@recipe), { confirm: "Are you sure?", class: "button is-danger", data: { turbo_method: :delete } }  %>
-          <% end %>
+              <% if user_signed_in? && @recipe.user.id == current_user.id %>
+                <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
+                <%= link_to "削除する", recipe_path(@recipe), { confirm: "Are you sure?", class: "button is-danger", data: { turbo_method: :delete } }  %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-
       <div class="column is-4">
         <article class="panel is-link">
           <p class="panel-heading">
@@ -70,7 +68,7 @@
     </div>
   </div>
   <br><br>
-    <div class="container">
+  <div class="container">
     <% if user_signed_in? %>
       <%= form_with(model: [@recipe, @comment], local: true) do |form| %>
         <%= form.text_area :comment_text, placeholder: "コメントする", rows: "2" %>
