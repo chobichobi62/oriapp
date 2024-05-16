@@ -76,10 +76,6 @@ a {
   font-size: 50px;
 }
 
-img {
-  width: 100%;
-}
-
 .navbar {
   box-shadow: var(--box-shadow);
 }
@@ -336,4 +332,30 @@ form .form-control {
   display: flex;
   flex-direction: row-reverse;
   overflow-x: scroll;
+}
+
+.main__table__list__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  list-style-type: none;
+  margin-bottom: 20px;
+  max-width: 100%; /* 親要素に合わせる */
+}
+
+.main__table__list__item figure {
+  margin: 0;
+  padding: 0;
+  max-width: 100%; /* 親要素に合わせる */
+}
+
+.favorite-recipe-image {
+  width: auto; /* 元の画像サイズを維持 */
+  height: auto; /* 高さも自動調整 */
+  max-width: 100%; /* 幅を親要素に合わせる */
+  object-fit: cover; /* 画像のアスペクト比を維持しつつ親要素に合わせる */
+}
+
+.main__table__list__item__body {
+  margin-top: 10px;
 }

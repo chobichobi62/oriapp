@@ -10,9 +10,18 @@
         お気に入り一覧
       </h2>
       <ul class="main__table__list">
+        <% if current_user.favorites.empty? %>
+          <p>お気に入りしたレシピはありません。</p>
+        <% else %>
       <% current_user.favorites.each do |favorite| %>
+      <li class="main__table__list__item">
       <%= link_to recipe_path(favorite.recipe), class: "main__table__list__item" do %>
-          <%= image_tag favorite.recipe.recipe_image.variant(resize_to_fill: [400, 400]) %>
+      <figure>
+      <% if favorite.recipe.recipe_image.attached? %>
+          <%= image_tag favorite.recipe.recipe_image.variant(resize_to_fit: [400, 400]), class: 'favorite-recipe-image' %>
+          <% else %>
+           <%= image_tag 'no-image2.png', size: '400x400', class: 'favorite-recipe-image' %>
+          <% end %>
         </figure>
         <div class="main__table__list__item__body">
           <div class="main__table__list__item__body__text">
@@ -24,6 +33,7 @@
       <i class="fas fa-chevron-right"></i>
     </li>
       <% end %>
+    <% end %>
 </ul>
     </section>
   </div>

@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   end
 
   root 'homes#index'
+  get 'users/:id/likes', to: 'users#likes', as: 'likes_user'
 
 end

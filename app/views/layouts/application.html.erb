@@ -68,6 +68,7 @@
       </div>
     </nav>
     <%= yield %>
+     <%= javascript_pack_tag 'favorite', 'data-turbo-track': 'reload' %>
         <footer>
       <div class="footer-top">
         <div class="container">
