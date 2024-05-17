@@ -4,17 +4,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (favoriteButton && heartIcon) {
     favoriteButton.addEventListener("click", function() {
-      if (favoriteButton.classList.contains("active")) {
-        favoriteButton.classList.remove("active");
-        heartIcon.classList.remove("bi-heart-fill");
-        heartIcon.classList.add("bi-heart");
-        // お気に入りを取り下げたときの処理
-      } else {
-        favoriteButton.classList.add("active");
-        heartIcon.classList.remove("bi-heart");
-        heartIcon.classList.add("bi-heart-fill");
-        // お気に入りを押したときの処理
-      }
+      const recipeId = favoriteButton.dataset.recipeId;
+      const isFavorited = favoriteButton.classList.contains("active");
+
+      fetch(`/favorites/toggle`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ recipe_id: recipeId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'added') {
+          favoriteButton.classList.add("active");
+          heartIcon.classList.remove("bi-heart");
+          heartIcon.classList.add("bi-heart-fill", "pink-heart");
+          favoriteButton.querySelector('span').innerText = 'お気に入り解除';
+        } else if (data.status === 'removed') {
+          favoriteButton.classList.remove("active");
+          heartIcon.classList.remove("bi-heart-fill", "pink-heart");
+          heartIcon.classList.add("bi-heart");
+          favoriteButton.querySelector('span').innerText = 'お気に入り登録';
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
     });
   } else {
     console.error("Favorite button or heart icon not found!");
