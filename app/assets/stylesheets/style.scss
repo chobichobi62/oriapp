@@ -334,28 +334,14 @@ form .form-control {
   overflow-x: scroll;
 }
 
-.main__table__list__item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  list-style-type: none;
-  margin-bottom: 20px;
-  max-width: 100%; /* 親要素に合わせる */
+.main__table__list__item-link {
+  outline: 2px solid red; /* 画像のリンク周りに赤枠を追加して確認 */
 }
 
-.main__table__list__item figure {
-  margin: 0;
-  padding: 0;
-  max-width: 100%; /* 親要素に合わせる */
+figure {
+  outline: 2px solid blue; /* 画像のfigure要素周りに青枠を追加して確認 */
 }
 
 .favorite-recipe-image {
-  width: auto; /* 元の画像サイズを維持 */
-  height: auto; /* 高さも自動調整 */
-  max-width: 100%; /* 幅を親要素に合わせる */
-  object-fit: cover; /* 画像のアスペクト比を維持しつつ親要素に合わせる */
-}
-
-.main__table__list__item__body {
-  margin-top: 10px;
+  outline: 2px solid green; /* 画像に緑枠を追加して確認 */
 }

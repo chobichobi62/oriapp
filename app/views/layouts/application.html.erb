@@ -1,84 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Oriapp</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
+  <title>Oriapp</title>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  
+  <% if content_for?(:head) %>
+    <%= yield :head %>
+  <% else %>
     <%= stylesheet_link_tag "style", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-</html>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark py-3 sticky-top">
-      <div class="container">
-        <%# タイトルクリックでトップページへ遷移 %>
-        <a class="navbar-brand" href="<%= root_path %>">
-  <h2 class="pt-2 text-white custom-font">D recipe</h2>
-        </a>
-        
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-<% if current_user %>
-  <li class="nav-item">
-    <p>マイページ</p>
-    <%= link_to user_path(current_user) do %>
-      <%= image_tag("human.png", alt: "My Page Icon", class: "footer-icon") %>
-    <% end %>
-  </li>
-<% end %>
+  <% end %>
+  
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark py-3 sticky-top">
+    <div class="container">
+      <%# タイトルクリックでトップページへ遷移 %>
+      <a class="navbar-brand" href="<%= root_path %>">
+        <h2 class="pt-2 text-white custom-font">D recipe</h2>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <% if current_user %>
+            <li class="nav-item">
+              <p>マイページ</p>
+              <%= link_to user_path(current_user) do %>
+                <%= image_tag("human.png", alt: "My Page Icon", class: "footer-icon") %>
+              <% end %>
             </li>
-          </ul>
-          <%# ログイン状態によって画面の表示を切り替える %>
-          <% if user_signed_in? %>
-        <div class="user_nav grid-6">
-         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-light rounded-btn" %>
-         </div>
-         <% else %>
-           <div class="grid-6">
-         <%= link_to "ログイン", new_user_session_path, class: "btn btn-light rounded-btn" %>
-         <%= link_to "新規登録", new_user_registration_path, class: "btn btn-light rounded-btn" %>
-           </div>
-         <% end %>
+          <% end %>
+        </ul>
+        <% if user_signed_in? %>
+          <div class="user_nav grid-6">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-light rounded-btn" %>
+          </div>
+        <% else %>
+          <div class="grid-6">
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-light rounded-btn" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-light rounded-btn" %>
+          </div>
+        <% end %>
       </div>
-    </nav>
-    <%= yield %>
-     <%= javascript_pack_tag 'favorite', 'data-turbo-track': 'reload' %>
-        <footer>
-      <div class="footer-top">
-        <div class="container">
-          <div class="row gy-4 justify-content-center">
-            <div class="col-md-12 text-center">
-              <h4 class="text-white">D recipe@2024</h4>
-           </div>
+    </div>
+  </nav>
+  <%= yield %>
+  <%= javascript_pack_tag 'favorite', 'data-turbo-track': 'reload' %>
+  <footer>
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-md-12 text-center">
+            <h4 class="text-white">D recipe@2024</h4>
           </div>
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
 </html>
