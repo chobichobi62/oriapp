@@ -4,15 +4,28 @@ class FavoritesController < ApplicationController
 
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    current_user.favorite_recipes << @recipe
-    redirect_to @recipe, notice: 'お気に入りに登録しました。'
+    @favorite = current_user.favorites.build(recipe: @recipe)
+
+    if @favorite.save
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @recipe, notice: 'Recipe was successfully favorited.' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @recipe, alert: 'Unable to favorite recipe.' }
+      end
+    end
   end
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
-    current_user.favorite_recipes.delete(@recipe)
-    redirect_to @recipe, notice: 'お気に入りを解除しました。'
+    @favorite = current_user.favorites.find_by(recipe: @recipe)
+    if @favorite.destroy
+      redirect_to @recipe, notice: 'Recipe was successfully unfavorited.'
+    else
+      redirect_to @recipe, alert: 'Unable to unfavorite recipe.'
+    end
 end
 
 

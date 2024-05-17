@@ -76,10 +76,6 @@ a {
   font-size: 50px;
 }
 
-img {
-  width: 100%;
-}
-
 .navbar {
   box-shadow: var(--box-shadow);
 }
@@ -336,4 +332,16 @@ form .form-control {
   display: flex;
   flex-direction: row-reverse;
   overflow-x: scroll;
+}
+
+.main__table__list__item-link {
+  outline: 2px solid red; /* 画像のリンク周りに赤枠を追加して確認 */
+}
+
+figure {
+  outline: 2px solid blue; /* 画像のfigure要素周りに青枠を追加して確認 */
+}
+
+.favorite-recipe-image {
+  outline: 2px solid green; /* 画像に緑枠を追加して確認 */
 }

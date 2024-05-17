@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        レシピ詳細
+        マイページ
       </h1>
     </div>
   </div>
@@ -11,81 +11,95 @@
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
-      <div class="column is-7">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <%= image_tag (@recipe.recipe_image.attached? ? @recipe.recipe_image : "no-image2.png") %>
+      <div class="column is-8">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
+                <%= image_tag(@user.profile_image && @user.profile_image.attached? ? url_for(@user.profile_image) : 'no-image.jpg', class: 'profile_image is-rounded', style: 'width: 100px; height: auto;') %>
             </figure>
           </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><%= @recipe.title %></p>
-                <% if user_signed_in? %>
-                  <div id="favorite-btn<%= @recipe.id %>">
-                    <% if @recipe.favorited_by?(current_user) %>
-                      <%= link_to 'お気に入り解除 <i class="bi bi-heart-fill" style="font-size: 2em; color: #db7093;"></i>'.html_safe, recipe_favorite_path(@recipe, @recipe.favorites.find_by(user_id: current_user.id)), method: :delete, class: "recipe_favorites" %>
-                    <% else %>
-                      <%= link_to 'お気に入り登録 <i class="bi bi-heart" style="font-size: 2em; color: #db7093;"></i>'.html_safe, recipe_favorites_path(@recipe), method: :post, class: "recipe_favorites" %>
-                    <% end %>
-                  </div>
+          <div class="column is-8">
+            <table class="table is-fullwidth">
+              <tr>
+                <td class="is-size-4">
+                  <strong><%= @user.nickname %></strong>
+                </td>
+                <% if @user.id == current_user.id %>
+                <td class="is-size-4">
+                  <%= @user.email %>
+                </td>
+                <td>
+                    <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
+                </td>
                 <% end %>
-              </div>
-            </div>
-            <div class="content">
-              <table class="table is-narrow">
-                <tr>
-                  <th>材料</th>
-                </tr>
-                <tr>
-                  <td><%= simple_format @recipe.material %></td>
-                </tr>
-                <th>作り方</th>
-                <tr>
-                  <td><%= simple_format @recipe.make %></td>
-                </tr>
-              </table>
-              <% if user_signed_in? && @recipe.user.id == current_user.id %>
-                <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
-                <%= link_to "削除する", recipe_path(@recipe), { confirm: "Are you sure?", class: "button is-danger", data: { turbo_method: :delete } }  %>
-              <% end %>
-            </div>
+              </tr>
+            </table>
+            <table class="table is-fullwidth">
+              <tr>
+                <td>
+                  <%= @user.profile %>
+                </td>
+              </tr>
+            </table>
           </div>
+          <ul><br>
+      <li class="side-bar__group__list">
+        <%= link_to likes_user_path do %>
+      お気に入りレシピ <i class="bi bi-heart" style="font-size: 1em; color: #db7093;"></i>
+        <% end %>
+      </li>
+    </ul>
         </div>
-      </div>
-      <div class="column is-4">
-        <article class="panel is-link">
-          <p class="panel-heading">
-            By <%= @recipe.user.nickname %>
-          </p>
-          <%= link_to user_path(@recipe.user), class: "panel-block" do %>
-            <span class="panel-icon">
-              <i class="fas fa-user" aria-hidden="true"></i>
-            </span>
-            <%= @recipe.user.nickname %> さんのページへ
-          <% end %>
-        </article>
       </div>
     </div>
   </div>
-  <br><br>
+</section>
+
+<section class="section">
+                  <h2>投稿レシピ一覧</h2><br>
   <div class="container">
-    <% if user_signed_in? %>
-      <%= form_with(model: [@recipe, @comment], local: true) do |form| %>
-        <%= form.text_area :comment_text, placeholder: "コメントする", rows: "2" %>
-        <%= form.submit "投稿" %>
-      <% end %>
-    <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
-    <% end %>
-    <div class="comments"><br>
-      <h4>＜コメント一覧＞</h4>
-      <% @comments.each do |comment| %>
-        <p>
-          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-          <%= comment.comment_text %>
-        </p>
+    <div class="columns is-multiline">
+      <% @user.recipes.each do |recipe| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to recipe_path(recipe) do %>
+                  <%= image_tag recipe.recipe_image.attached? ? url_for(recipe.recipe_image) : 'no-image2.png' %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <%= link_to recipe_path(recipe), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    このレシピを見る
+                  <% end %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to edit_recipe_path(recipe), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      このレシピを編集する
+                    <% end %>
+                  <% end %>
+                    <%= link_to recipe_path(recipe), { confirm: "Are you sure?", class: "panel-block", data: { turbo_method: :delete } } do %>
+                    <span class="panel-icon">
+                    <i class="fas fa-trash"></i>
+                    </span>
+                    このレシピを削除する
+                    <% end %>
+                </div>
+              </div>
+              <div class="content">
+                <time><%= recipe.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

@@ -1,30 +1,44 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "likes", "data-turbo-track": "reload" %>
+<% end %>
+
 <div class="container-show">
   <div class="main">
     <section class="main__group">
-      <h2 class="main__group__title">
-        マイページ
-      </h2>
+      <h1 class="main__group__title">
+        マイページ<br><br>
+      </h1>
     </section>
     <section class="main__table">
       <h2 class="main__table__header">
         お気に入り一覧
       </h2>
       <ul class="main__table__list">
-      <% current_user.favorites.each do |favorite| %>
-      <%= link_to recipe_path(favorite.recipe), class: "main__table__list__item" do %>
-          <%= image_tag favorite.recipe.recipe_image.variant(resize_to_fill: [400, 400]) %>
-        </figure>
-        <div class="main__table__list__item__body">
-          <div class="main__table__list__item__body__text">
-            <%= favorite.recipe.title %>
-            <br>
-          </div>
-        </div>
-      <% end %>
-      <i class="fas fa-chevron-right"></i>
-    </li>
-      <% end %>
-</ul>
+        <% if current_user.favorites.empty? %>
+          <p>お気に入りしたレシピはありません。</p>
+        <% else %>
+          <% current_user.favorites.each do |favorite| %>
+            <li class="main__table__list__item">
+              <%= link_to recipe_path(favorite.recipe), class: "main__table__list__item-link" do %>
+                <figure>
+                  <% if favorite.recipe.recipe_image.attached? %>
+                    <%= image_tag favorite.recipe.recipe_image.variant(resize_to_fit: [400, 400]), class: 'favorite-recipe-image' %>
+                  <% else %>
+                    <%= image_tag 'no-image2.png', size: '400x400', class: 'favorite-recipe-image' %>
+                  <% end %>
+                </figure>
+                <div class="main__table__list__item__body">
+                  <div class="main__table__list__item__body__text">
+                    <%= favorite.recipe.title %>
+                    <br>
+                  </div>
+                </div>
+              <% end %>
+              <i class="fas fa-chevron-right"></i>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
     </section>
   </div>
 </div>
