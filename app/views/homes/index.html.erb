@@ -93,10 +93,14 @@
   </div>
 </div>
 
-<%= link_to user_signed_in? ? new_recipe_path : new_user_registration_path, class: 'purchase-btn' do %>
-  <span class='purchase-btn-text'>投稿する</span>
-  <%= image_tag 'food.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-<% end %>
+<div class="parent-container">
+  <%= link_to user_signed_in? ? new_recipe_path : new_user_registration_path, class: 'purchase-btn' do %>
+    <div class="purchase-btn-content">
+      <%= image_tag 'food.png', class: "purchase-btn-icon" %>
+      <span class='purchase-btn-text'>投稿する</span>
+    </div>
+  <% end %>
+</div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

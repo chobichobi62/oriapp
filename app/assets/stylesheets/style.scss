@@ -269,7 +269,13 @@ form .form-control {
   object-fit: cover;
 
 }
+
 // 投稿するボタン
+.parent-container {
+  height: 100vh; /* 画面の高さいっぱいに表示する */
+  width: 100%; /* 画面の幅いっぱいに表示する */
+}
+
 .purchase-btn {
   position: fixed;
   bottom: 0;
@@ -277,12 +283,32 @@ form .form-control {
   width: 80px;
   height: 90px; 
   z-index: 50;
+  display: flex; /* 子要素を横並びにするためにflexを指定 */
   align-items: center;
-  text-align: center;
+  justify-content: center; /* 子要素を中央に揃える */
   font-family: Hiragino Maru Gothic Pro W4; 
   background-color: #32cd32;
   border-radius: 10px;
 }
+
+.purchase-btn-content {
+  display: flex;
+  flex-direction: column; /* 子要素を縦に並べる */
+  align-items: center; /* 子要素を中央に揃える */
+}
+
+.purchase-btn-icon {
+  max-width: 60px; /* 親要素の幅に合わせる */
+  max-height: 60px; /* 親要素の高さに合わせる */
+  height: auto; /* 高さは自動調整 */
+  width: auto; /* 幅は自動調整 */
+  margin-bottom: 5px;
+}
+
+.purchase-btn-text {
+  font-size: 14px; /* フォントサイズを調整 */
+}
+
 // ログイン、新規登録、ログアウトボタン
 .rounded-btn {
   border-radius: 20px;
@@ -334,7 +360,7 @@ form .form-control {
   overflow-x: scroll;
 }
 
-.image-container {
+.recipes-image-show {
   display: flex;
   justify-content: center; /* 水平方向の中央揃え */
   align-items: center; /* 垂直方向の中央揃え */
