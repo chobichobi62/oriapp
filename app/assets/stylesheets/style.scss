@@ -334,14 +334,8 @@ form .form-control {
   overflow-x: scroll;
 }
 
-.main__table__list__item-link {
-  outline: 2px solid red; /* 画像のリンク周りに赤枠を追加して確認 */
-}
-
-figure {
-  outline: 2px solid blue; /* 画像のfigure要素周りに青枠を追加して確認 */
-}
-
-.favorite-recipe-image {
-  outline: 2px solid green; /* 画像に緑枠を追加して確認 */
+.image-container {
+  display: flex;
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
 }
