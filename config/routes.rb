@@ -8,14 +8,16 @@ Rails.application.routes.draw do
   end
 
   resources :recipes do
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy] do
+      member do
+        post 'toggle'
+      end
+    end
     resources :comments, only: :create
     collection do
       get 'search'
     end
   end
-
-  post 'favorites/toggle', to: 'favorites#toggle', as: :toggle_favorite
 
   root 'homes#index'
 end
