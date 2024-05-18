@@ -2,4 +2,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require_tree .
+ import "@hotwired/turbo-rails"
+ import "controllers"import "controllers"
+ 

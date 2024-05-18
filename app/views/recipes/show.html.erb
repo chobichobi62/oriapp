@@ -22,7 +22,14 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4"><%= @recipe.title %></p>
-
+                  <div id="favorite-btn<%= @recipe.id %>">
+                  <% if user_signed_in? %>
+                  <!-- お気に入りボタン -->
+    <button id="favoriteButton" class="<%= @recipe.favorited_by?(current_user) ? 'active' : '' %>">
+    <!-- ハートアイコン -->
+    <i id="heartIcon" class="bi bi-heart <%= @recipe.favorited_by?(current_user) ? 'active' : '' %>"></i>
+  <% end %>
+                   </div>
             </div>
             <div class="content">
               <table class="table is-narrow">
