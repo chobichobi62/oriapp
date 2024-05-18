@@ -1,9 +1,11 @@
+// javascript/controllers/application.js
+
 import { Application } from "@hotwired/stimulus"
 
-const application = Application.start()
+const stimulusApplication = Application.start()
 
 // Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
+stimulusApplication.debug = false
+window.Stimulus = stimulusApplication
 
-export { application }
+export { stimulusApplication };
