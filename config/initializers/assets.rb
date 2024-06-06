@@ -1,3 +1,5 @@
+# config/initializers/assets.rb
+
 # Be sure to restart your server when you modify this file.
 
 # Version of your assets, change this if you want to expire all your assets.
@@ -15,5 +17,5 @@ Rails.application.config.assets.precompile += %w(bootstrap.min.js popper.js)
 require 'autoprefixer-rails'
 
 Rails.application.config.assets.configure do |env|
-  env.register_postprocessor 'text/css', AutoprefixerRails.processor
+  env.register_postprocessor 'text/css', AutoprefixerRails::Sprockets
 end
