@@ -86,3 +86,5 @@ gem "aws-sdk-s3", require: false
 gem 'execjs'
 gem 'autoprefixer-rails', "~> 10.4.16.0"
 gem 'sprockets', '~> 4.0'
+gem 'mini_racer', platforms: :ruby
+
