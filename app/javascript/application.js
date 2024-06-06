@@ -3,3 +3,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+export const application = {
+  // ここに必要な機能やオブジェクトを定義
+};
