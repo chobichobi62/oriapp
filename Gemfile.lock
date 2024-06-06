@@ -305,6 +305,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  execjs
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
