@@ -84,4 +84,4 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem "aws-sdk-s3", require: false
 gem 'execjs'
-gem 'autoprefixer-rails', '~> 10.4.2'
+gem 'autoprefixer-rails', "~> 10.4.16.0"
