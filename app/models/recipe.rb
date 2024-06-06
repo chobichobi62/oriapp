@@ -19,7 +19,7 @@ class Recipe < ApplicationRecord
     validates :make
   end
 
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+  def liked_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 end

@@ -1,0 +1,3 @@
+document.querySelector('[data-recipe-id="<%= @recipe.id %>"]').dataset.liked = "true";
+document.querySelector('[data-recipe-id="<%= @recipe.id %>"] .like-count').textContent = "<%= @recipe.favorites.count %>";
+document.querySelector('[data-recipe-id="<%= @recipe.id %>"] .heart').classList.add('liked');
