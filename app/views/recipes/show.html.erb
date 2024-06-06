@@ -24,25 +24,37 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4"><%= @recipe.title %></p>
-
-            </div>
-            <div class="content">
-              <table class="table is-narrow">
-                <tr>
-                  <th>材料</th>
-                </tr>
-                <tr>
-                  <td><%= simple_format @recipe.material %></td>
-                </tr>
-                <th>作り方</th>
-                <tr>
-                  <td><%= simple_format @recipe.make %></td>
-                </tr>
-              </table>
-              <% if user_signed_in? && @recipe.user.id == current_user.id %>
-                <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
-                <%= link_to "削除する", recipe_path(@recipe), { confirm: "Are you sure?", class: "button is-danger", data: { turbo_method: :delete } }  %>
-              <% end %>
+              </div>
+              <div class="content">
+                <table class="table is-narrow">
+                  <tr>
+                    <th>材料</th>
+                  </tr>
+                  <tr>
+                    <td><%= simple_format @recipe.material %></td>
+                  </tr>
+                  <th>作り方</th>
+                  <tr>
+                    <td><%= simple_format @recipe.make %></td>
+                  </tr>
+                </table>
+                <% if user_signed_in? && @recipe.user.id == current_user.id %>
+                  <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
+                  <%= link_to "削除する", recipe_path(@recipe), { confirm: "Are you sure?", class: "button is-danger", data: { turbo_method: :delete } }  %>
+                <% end %>
+                <!-- いいねボタンの追加 -->
+                <div class="like-section">
+                  <% if current_user && @recipe.liked_by?(current_user) %>
+                    <button class="like-button" data-recipe-id="<%= @recipe.id %>" data-liked="true">
+                      <span class="heart liked">&hearts;</span>  <span class="like-count"><%= @recipe.favorites.count %></span>
+                    </button>
+                  <% else %>
+                    <button class="like-button" data-recipe-id="<%= @recipe.id %>" data-liked="false">
+                      <span class="heart">&hearts;</span> <span class="like-count"><%= @recipe.favorites.count %></span>
+                    </button>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -83,3 +95,5 @@
     </div>
   </div>
 </section>
+
+<script src="<%= asset_path 'script.js' %>"></script>

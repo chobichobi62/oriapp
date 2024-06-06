@@ -365,3 +365,20 @@ form .form-control {
   justify-content: center; /* 水平方向の中央揃え */
   align-items: center; /* 垂直方向の中央揃え */
 }
+
+.heart {
+  color: gray;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.heart.liked {
+  color: #db7093;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}

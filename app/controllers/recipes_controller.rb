@@ -44,6 +44,16 @@ class RecipesController < ApplicationController
     @recipes = Recipe.search(params[:keyword])
   end
 
+  def like
+    @recipe = Recipe.find(params[:id])
+    if current_user.favorites.exists?(recipe: @recipe)
+      current_user.favorites.find_by(recipe: @recipe).destroy
+    else
+      current_user.favorites.create(recipe: @recipe)
+    end
+    render json: { success: true, favorites_count: @recipe.favorites.count }
+  end
+
   private
   def recipe_params
     params.require(:recipe).permit(:nickname, :recipe_image, :title, :material, :make).merge(user_id: current_user.id)

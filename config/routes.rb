@@ -8,14 +8,13 @@ Rails.application.routes.draw do
   end
 
   resources :recipes do
-    resources :favorites, only: [:create, :destroy]
+    resource :favorite, only: [:create, :destroy]
     resources :comments, only: :create
     collection do
       get 'search'
     end
   end
 
-  post 'favorites/toggle', to: 'favorites#toggle', as: :toggle_favorite
-
+  post '/api/like/:id', to: 'recipes#like'
   root 'homes#index'
 end
